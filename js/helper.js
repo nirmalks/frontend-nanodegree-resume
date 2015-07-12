@@ -1,12 +1,3 @@
-/*
-
-This file contains all of the code running in the background that makes resumeBuilder.js possible. We call these helper functions because they support your code in this course.
-
-Don't worry, you'll learn what's going on in this file throughout the course. You won't need to make any changes to it until you start experimenting with inserting a Google Map in Problem Set 3.
-
-Cameron Pittman
-*/
-
 
 /*
 These are HTML strings. As part of the course, you'll be using JavaScript functions
@@ -29,9 +20,10 @@ var HTMLwelcomeMsg = '<span class="welcome-message">%data%</span>';
 var HTMLskillsStart = '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>';
 var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
 
+/*
 var HTMLworkStart = '<div class="work-entry"></div>';
 var HTMLworkEmployer = '<a href="#">%data%';
-var HTMLworkTitle = ' - %data%</a>';
+var HTMLworkTitle = ' <a- %data%</a>';
 var HTMLworkDates = '<div class="date-text">%data%</div>';
 var HTMLworkLocation = '<div class="location-text">%data%</div>';
 var HTMLworkDescription = '<p><br>%data%</p>';
@@ -41,6 +33,7 @@ var HTMLprojectTitle = '<a href="#">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p><br>%data%</p>';
 var HTMLprojectImage = '<img src="%data%">';
+*/
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a href="#">%data%';
@@ -58,13 +51,23 @@ var HTMLonlineURL = '<br><a href="#">%data%</a>';
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
 
-
 /*
 The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
+function inName(name)
+{
+	//Splits the string into array of single chars
+	name = name.trim().split(" ");
+	
+	name[0] = name[0].slice(0,1).toUpperCase()+ name[0].slice(1).toLowerCase();
+	name[1] = name[1].toUpperCase();
+	console.log(name);
+	return name[0] + " " + name[1];
+}
+
 $(document).ready(function() {
   $('button').click(function() {
-    var iName = inName() || function(){};
+    var iName = inName(realName) || function(){};
     $('#name').html(iName);  
   });
 });
@@ -85,7 +88,10 @@ function logClicks(x,y) {
 }
 
 $(document).click(function(loc) {
-  // your code goes here!
+  /* Act on the event loc*/
+  var x = loc.pageX;
+  var y = loc.pageY;
+  logClicks(x,y);
 });
 
 
