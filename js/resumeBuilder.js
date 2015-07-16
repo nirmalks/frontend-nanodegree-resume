@@ -44,35 +44,6 @@ function displayContactInfo()
 }
 displayContactInfo();
 
-var education = {
-	"schools": {
-		"name": "NIOS",
-		"class" : "Senior Secondary"
-	},
-	
-	"college":{
-		"name":"Sri Muthukumaran Institute of Technology",
-		"year" : "2012 - 2016",
-		"degree" :"B.E",
-		"minor": "Computer Science"
-	},
-	
-	"Online Courses":{
-		"Course1": {
-		"name":	"Think Create and Code",
-		"university" :"university of Adelaide",
-		"skill": "processingjs"
-		}
-	}
-}
-
-var projects = {
-	"project1" :{
-		"name" : "Sample project1",
-		"title" : "Sample prpoject yet to be done"
-	}
-}
-
 //Adding the skills 
 function displaySkills()
 {
@@ -89,16 +60,79 @@ function displaySkills()
 }
 displaySkills();
 
+var education = {
+	"schools": [
+	{
+		"name": "NIOS",
+		"class" : "Senior Secondary",
+		"passingyear" : "April 2012"
+	}
+	],
+	
+	"colleges":[
+	{
+		"name":"Sri Muthukumaran Institute of Technology",
+		"year" : "2012 - 2016",
+		"degree" :"B.E",
+		"minor": "Computer Science",
+		"location": "Mangadu"
+	}
+	],
+	
+	"Online Courses":[
+	{
+		"Course1": {
+		"name":	"Think Create and Code",
+		"university" :"university of Adelaide",
+		"skill": "processingjs"
+		}
+	}
+	],
+	"display" : function(){
+		for(college in education.colleges)
+		{
+			$("#education").append(HTMLschoolStart);
+			var collegeName  = HTMLschoolName.replace("%data%",education.colleges[college].name);
+			$(".education-entry:last").append(collegeName);
+
+			var collegeDegree  = HTMLschoolDegree.replace("%data%",education.colleges[college].degree);
+			$(".education-entry:last").append(collegeDegree);
+
+			var collegeYear  = HTMLschoolDates.replace("%data%",education.colleges[college].year);
+			$(".education-entry:last").append(collegeYear);
+		}
+	}
+}
+education.display();
+//Project object
+var projects = {
+	"project1" :[
+	{
+		"title" : "Sample project yet to be done",
+		"dates": "2015 July",
+		"description": "Work is yet to be done"
+	}
+	],
+	"display" :  function(){
+	for(project in projects.project1){
+		$("#projects").append(HTMLprojectStart);
+		
+		var formattedTitle = HTMLprojectTitle.replace("%data%",projects.project1[project].title);
+		$(".project-entry:last").append(formattedTitle);
+	
+		var formattedDates = HTMLprojectDates.replace("%data%",projects.project1[project].dates);
+		$(".project-entry:last").append(formattedDates);
+
+		var formattedDescription = HTMLprojectDescription.replace("%data%",projects.project1[project].description);
+		$(".project-entry:last").append(formattedDescription);
+		}
+	}
+}
+projects.display();
+
 /*For displaying Internatized version of Names*/
-
-/*Function to capitalize the first letter of the first name
-function firstToUpperCase( str ) {
-    return str.substr(0, 1).toUpperCase() + str.substr(1);
-}*/
-
 //Function to display the complete name
-
-$("#main").append(internationalizeButton);
+//$("#main").append(internationalizeButton);
 
 /*
 **Still havent added info abt work
@@ -113,3 +147,5 @@ function locationizer(work_obj){
 	return locationArray;
 }
 */
+
+$("#mapDiv").prepend(googleMap);
